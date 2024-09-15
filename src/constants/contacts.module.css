@@ -1,0 +1,33 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 60px;
+    text-align: center;
+    
+  }
+  
+  .heading {
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .text {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  .contactlist {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .contactitem {
+    font-size: 1.1rem;
+    margin: 10px 0;
+  }
+  
+  .contactlink {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
