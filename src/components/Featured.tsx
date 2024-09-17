@@ -1,17 +1,27 @@
 "use client"
+import { ProductType } from "@/app/types/types";
 import { featuredProducts } from "@/data";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 const Featured = () => {
+  const supabase = createClientComponentClient()
+  const [products, setProducts] = useState<ProductType | any>([]);
+  const getProducts = async () => {
+    const { data, error } = await supabase.from("Product").select("*")
+    setProducts(data)
+  }
+  useEffect(() => {
+    getProducts();
+  }, [])
 
   return (
     <div className="w-screen overflow-x-scroll text-red-500">
       {/* WRAPPER */}
       <div className="w-max flex">
         {/* SINGLE ITEM */}
-        {featuredProducts.map((item) => (
+        {products.map((item : any) => (
           <div
             key={item.id}
             className="w-screen h-[60vh] flex flex-col items-center justify-around p-4 hover:bg-fuchsia-50 transition-all duration-300 md:w-[50vw] xl:w-[33vw] xl:h-[90vh]"
@@ -20,6 +30,7 @@ const Featured = () => {
             {item.img && (
               <div className="relative flex-1 w-full hover:rotate-[60deg] transition-all duration-500">
                 <Image src={item.img} alt="" fill className="object-contain" />
+                
               </div>
             )}
             {/* TEXT CONTAINER */}

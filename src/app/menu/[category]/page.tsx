@@ -1,12 +1,27 @@
+"use client"
+import { ProductType } from "@/app/types/types";
 import { pizzas } from "@/data";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const CategoryPage = () => {
+type Props = {
+  params:{category:string}
+}
+const CategoryPage = ({params}:Props) => {
+  const supabase = createClientComponentClient()
+  const [categories, setCategories] = useState<ProductType | any >([]);
+  const getCategories = async () => {
+    const { data, error } = await supabase.from('Product').select('*').eq('catSlug', params.category);
+    setCategories(data as any)
+  }
+  useEffect(() => {
+    getCategories();
+  }, [])
   return (
     <div className="flex flex-wrap text-red-500">
-      {pizzas.map((item) => (
+      {categories.map((item : any) => (
         <Link className="w-full h-[60vh] border-r-2 border-b-2 border-red-500 sm:w-1/2 lg:w-1/3 p-4 flex flex-col justify-between group odd:bg-fuchsia-50" href={`/product/${item.id}`} key={item.id}>
           {/* IMAGE CONTAINER */}
           {item.img && (

@@ -4,7 +4,6 @@ import React from "react";
 import CountDown from "./CountDown";
 import { useRouter } from "next/navigation";
 
-
 const Offer = () => {
   const router = useRouter();
   return (
@@ -20,20 +19,19 @@ const Offer = () => {
           - sans engagement et sans frais
         </p>
 
-        <button className="bg-red-500 text-white rounded-md py-3 px-6" onClick={()=>router.push('/menu')}>Commandez maintenant</button>
+        <button className="bg-red-500 text-white rounded-md py-3 px-6" onClick={() => router.push('/menu')}>Commandez maintenant</button>
       </div>
 
-      <div className="flex-1 w-full relative md:h-full">
-  <Image
-    src="/offerProduct.png"
-    alt=""
-    layout="responsive"
-    width={500} // Set an appropriate width based on your design
-    height={500} // Set an appropriate height based on your design
-    objectFit="contain"
-    objectPosition="center"
-  />
-</div>
+      <div className="flex-1 w-full relative md:h-full flex justify-end ">
+        <Image
+          src="https://res.cloudinary.com/zaydm/image/upload/v1703877551/restaurant/qphzowsvfwp8gwgeap16.jpg"
+          alt=""
+          width={400} // Set an appropriate width based on your design
+          height={400} // Set an appropriate height based on your design
+          objectFit="contain"
+          objectPosition="left center"
+        />
+      </div>
 
 
     </div>
